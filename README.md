@@ -4,7 +4,7 @@ Current version: 1.3.2
 
 # Overview:
 
-This script is used to make a popup toast notification on the user&#39;s computer reminding to upgrade the OS build. A popup has a &quot;Close&quot; button which closes the popup, but it will be popped as scheduled, and &quot;Install Now&quot; button, which will redirect a user to the SCCM Client to the proper page with the Upgrade button. The popup is scheduled via the Task Scheduler and is executed from a local file without the necessity to be connected to the company network. However, notification will be displayed only if a user is connected to the company network. For the full list of the IPs, please have a look at the [\\bby-configmgr01\Applications\UserTickler\files\list\_of\_ip.txt](./../../%5C%5Cbby-configmgr01%5CApplications%5CUserTickler%5Cfiles%5Clist_of_ip.txt)
+This script is used to make a popup toast notification on the user&#39;s computer reminding to upgrade the OS build. A popup has a &quot;Close&quot; button which closes the popup, but it will be popped as scheduled, and &quot;Install Now&quot; button, which will redirect a user to the SCCM Client to the proper page with the Upgrade button. The popup is scheduled via the Task Scheduler and is executed from a local file without the necessity to be connected to the company network. However, notification will be displayed only if a user is connected to the company network. For the full list of the IPs, please have a look at the \files\list\_of\_ip.txt
 
 The notification will be triggered by time, every day after 2pm and is scheduled to run every two hours.
 
@@ -14,7 +14,7 @@ The script is designed to run on the Windows 10 OS.
 
 **Files of the script:**
 
-The script consists of several parts, each with a specific role. The script&#39;s directory is: [\\bby-configmgr01\Applications\UserTickler\](./../../%5C%5Cbby-configmgr01%5CApplications%5CUserTickler%5C)
+The script consists of several parts, each with a specific role. The script&#39;s directory is: \\server-name\UserTickler\
 
 1. ps1 – the first script to be executed. As it is pushed through the SCCM, it must have a connection to the HE Corp. It copies folder &quot;_files_&quot; to the user&#39;s machine. After that it sets up the permissions recursively on the folder and files. The last step it does is calling the &quot;_files\tickler\_\&lt;current\_version\&gt;.ps1_&quot; script on the user&#39;s machine so it is executed locally.
 2. tickler\_\&lt;current\_version\&gt;.ps1 – Is a main script with the following hierarchy (more about functions later on):
@@ -111,7 +111,7 @@ If any changed in the code are made, you are required to create a new package. P
 To create a package:
 
 - Open **Software Library -\&gt; Application Management -\&gt; Packages** and click **Create Package**.
-- Specify the name of the package and set the source folder to the [\\bby-configmgr01\Applications\UserTickler](./../../%5C%5Cbby-configmgr01%5CApplications%5CUserTickler)
+- Specify the name of the package and set the source folder to the \\servername\UserTickler
 - Choose a **Standard Program**
 - In the **command line** section, specify the following command to be run: _Powershell.exe -NoProfile -ExecutionPolicy ByPass -File pushScript.ps1_
 - Set the **Maximum allowed run time** to 15 min (minimal value)
