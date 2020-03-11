@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2020-02-10T15:02:06.7315711</Date>
+    <Author>HOULEELEC\viktor.sheverdin</Author>
+    <URI>\UserTickler</URI>
+  </RegistrationInfo>
+  <Principals>
+    <Principal id="Author">
+      <GroupId>HOULEELEC\Domain Users</GroupId>
+      <!-- <LogonType>InteractiveToken</LogonType> -->
+      <RunLevel>HighestAvailable</RunLevel>
+      <!-- 
+        This is the condition when it will run. The problem is that InteractiveToken means User Already must be loged in, but S-1-5-18 cannot be loged in. This will work for a specific user only
+      <UserId>S-1-5-21-3285121651-4096204535-659183504-45782</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>HighestAvailable</RunLevel> -->
+    </Principal>
+  </Principals>
+  <Settings>
+    <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <IdleSettings>
+      <StopOnIdleEnd>true</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+  </Settings>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2020-02-13T14:00:00</StartBoundary>
+      <Repetition>
+        <Interval>PT2H</Interval>
+        <Duration>PT5H</Duration>
+      </Repetition>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Command>
+      <Arguments>-ExecutionPolicy ByPass -WindowStyle Hidden -command "&amp; C:\UserTickler\files\tickler_1.3.2.ps1"</Arguments>
+    </Exec>
+  </Actions>
+</Task>
