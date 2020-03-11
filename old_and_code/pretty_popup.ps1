@@ -9,7 +9,7 @@ function popup_message {
     $SoftwarecenterShortcut = "softwarecenter:SoftwareID=ScopeId_17995F15-6948-4994-850E-533712DFD41E/Application_1e02546f-ebf1-4345-bf17-2a924e6bf8cf"
     #$WarningSignImg = "\\$env:computername\c$\UserTickler\warning.png"
     $WarningSignImg = "c:\UserTickler\files\warning.png"
-    $houleLogoImg = "c:\UserTickler\files\houlelogo.png"
+    $LogoImg = "c:\UserTickler\files\logo.png"
     #Gets the Template XML so we can manipulate the values
     [xml]$ToastTemplate = ([Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($Template).GetXml())
     
@@ -17,8 +17,8 @@ function popup_message {
     <toast launch="app-defined-string">
         <visual>
         <binding template="ToastGeneric">
-            <text>HOULE IT NOTICE</text>
-            <image placement="appLogoOverride" hint-crop="circle" src="$houleLogoImg"/>
+            <text>Company IT NOTICE</text>
+            <image placement="appLogoOverride" hint-crop="circle" src="$LogoImg"/>
             <text>There is important windows upgrade available. Please install it ASAP. The installation process may take up to 2 hours.</text>
         </binding>
         </visual>
